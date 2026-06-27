@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AD Construction</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;color:#1a1a1a;background:#fff}
+:root{
+  --orange:#E07B2A;
+  --dark-orange:#C45F10;
+  --steel:#3A4A5C;
+  --dark:#1C2028;
+  --concrete:#6B6F74;
+  --light-bg:#F4F1EC;
+}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:var(--dark);position:sticky;top:0;z-index:100;border-bottom:3px solid var(--orange)}
+.logo{font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:2px}
+.logo span{color:var(--orange)}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:#ccc;text-decoration:none;font-size:0.9rem;letter-spacing:1px;cursor:pointer;transition:color 0.2s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange);color:#fff;border:none;padding:0.5rem 1.2rem;font-size:0.85rem;letter-spacing:1px;cursor:pointer;border-radius:4px;font-weight:600}
+.nav-cta:hover{background:var(--dark-orange)}
+
+/* HERO with construction site image */
+.hero{
+  min-height:560px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:4rem 2rem;
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(to bottom, rgba(28,32,40,0.82) 0%, rgba(28,32,40,0.75) 60%, rgba(28,32,40,0.92) 100%),
+    url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80') center/cover no-repeat;
+}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,var(--orange),var(--dark-orange),var(--orange));
+}
+.hero-content{position:relative;z-index:1}
+.hero-tag{
+  display:inline-block;
+  background:var(--orange);color:#fff;
+  font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;
+  padding:0.3rem 1rem;border-radius:2px;margin-bottom:1.2rem;font-weight:600
+}
+.hero h1{font-size:3.2rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:1rem;text-shadow:0 2px 8px rgba(0,0,0,0.4)}
+.hero h1 span{color:var(--orange)}
+.hero p{color:#ddd;font-size:1rem;max-width:540px;margin:0 auto 2rem;line-height:1.8}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--orange);color:#fff;border:none;padding:0.85rem 2.2rem;font-size:0.9rem;letter-spacing:1px;cursor:pointer;border-radius:4px;font-weight:600}
+.btn-primary:hover{background:var(--dark-orange)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5);padding:0.85rem 2.2rem;font-size:0.9rem;letter-spacing:1px;cursor:pointer;border-radius:4px;font-weight:600}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.1)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(224,123,42,0.4);margin-top:3rem;padding-top:2rem;max-width:700px;margin-left:auto;margin-right:auto}
+.stat{text-align:center;padding:1rem;border-right:1px solid rgba(224,123,42,0.2)}
+.stat:last-child{border-right:none}
+.stat-num{font-size:1.9rem;font-weight:700;color:var(--orange)}
+.stat-label{font-size:0.72rem;color:#bbb;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+/* SECTIONS */
+section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.sec-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:0.5rem}
+.sec-eyebrow::before{content:'';display:block;width:32px;height:3px;background:var(--orange)}
+.sec-tag{color:var(--orange);font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+.sec-title{font-size:2rem;font-weight:700;margin-bottom:0.4rem;color:var(--dark)}
+.sec-sub{color:var(--concrete);font-size:0.95rem;margin-bottom:2rem;line-height:1.6}
+.sec-line{width:48px;height:4px;background:var(--orange);margin-bottom:2rem;border-radius:2px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.about-visual{
+  background:var(--dark);
+  border-radius:8px;padding:2.5rem;
+  border-left:5px solid var(--orange);
+  text-align:center;position:relative;overflow:hidden
+}
+.about-visual::before{content:'⚙';position:absolute;top:-10px;right:10px;font-size:8rem;opacity:0.05;line-height:1}
+.about-icon{font-size:4rem;margin-bottom:1rem}
+.about-visual h3{color:var(--orange);font-size:1.1rem;font-weight:700;margin-bottom:0.75rem}
+.about-visual p{color:#aaa;font-size:0.9rem;line-height:1.7}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.value-item{background:var(--light-bg);border:1px solid #e0dbd2;border-radius:8px;padding:1rem;text-align:center;border-top:3px solid var(--orange)}
+.value-item i{font-size:1.5rem;color:var(--orange);margin-bottom:0.5rem;display:block}
+.value-item p{font-size:0.8rem;color:var(--steel);font-weight:600}
+
+/* SERVICES */
+.services-bg{background:var(--light-bg);padding:4rem 0}
+.services-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.service-card{
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:0;
+  padding:1.75rem;
+  border-top:4px solid var(--orange);
+  position:relative;
+}
+.service-card:nth-child(2){border-top-color:var(--steel)}
+.service-card:nth-child(3){border-top-color:var(--steel)}
+.service-card:nth-child(4){border-top-color:var(--dark)}
+.svc-icon{width:52px;height:52px;background:var(--dark);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.svc-icon i{font-size:1.5rem;color:var(--orange)}
+.service-card h3{font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:var(--dark)}
+.service-card p{font-size:0.85rem;color:var(--concrete);line-height:1.6}
+.svc-list{margin-top:0.75rem;padding-left:0}
+.svc-list li{font-size:0.82rem;color:#444;margin-bottom:5px;list-style:none;display:flex;align-items:center;gap:8px}
+.svc-list li::before{content:'▸';color:var(--orange);font-size:0.7rem}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.proj-card{background:#fff;border:1px solid #e0dbd2;border-radius:0;overflow:hidden}
+.proj-img{height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.proj-img.r{background:linear-gradient(135deg,#2a3a1a,#3a4a2a)}
+.proj-img.c{background:linear-gradient(135deg,var(--dark),var(--steel))}
+.proj-img.i{background:linear-gradient(135deg,#2a1a0a,#3a2a1a)}
+.proj-badge{position:absolute;top:10px;left:10px;background:var(--orange);color:#fff;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;font-weight:700}
+.proj-info{padding:1rem;border-top:3px solid var(--light-bg)}
+.proj-info h3{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem;color:var(--dark)}
+.proj-info p{font-size:0.8rem;color:var(--concrete)}
+
+/* QUOTE */
+.quote-section{
+  background:var(--dark);
+  border-radius:0;
+  padding:4rem 2rem;
+  margin:0;
+  border-top:5px solid var(--orange);
+}
+.quote-inner{max-width:1100px;margin:0 auto}
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.quote-info h2{font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:0.75rem}
+.quote-info p{color:#aaa;font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem}
+.quote-feature{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+.qf-icon{width:36px;height:36px;background:rgba(224,123,42,0.15);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qf-icon i{color:var(--orange);font-size:1rem}
+.quote-feature span{color:#ccc;font-size:0.88rem}
+.quote-form{background:rgba(255,255,255,0.04);border-radius:4px;padding:2rem;border:1px solid rgba(255,255,255,0.08)}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:0.78rem;color:#aaa;margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;font-weight:600}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:0.7rem 1rem;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:3px;font-size:0.9rem;color:#fff;
+  font-family:Arial,sans-serif;outline:none;transition:border-color 0.2s
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--orange)}
+.form-group select option{background:var(--dark);color:#fff}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.submit-btn{
+  width:100%;background:var(--orange);color:#fff;border:none;
+  padding:0.9rem;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;border-radius:3px;margin-top:0.5rem;font-family:Arial,sans-serif;font-weight:700
+}
+.submit-btn:hover{background:var(--dark-orange)}
+
+/* CONTACT */
+.contact-section{background:var(--light-bg);border-radius:0;padding:3rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact-info h2{font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;color:var(--dark)}
+.contact-info p{color:var(--concrete);font-size:0.9rem;margin-bottom:2rem;line-height:1.6}
+.info-item{display:flex;align-items:center;gap:14px;margin-bottom:1.3rem}
+.info-icon{width:42px;height:42px;background:var(--dark);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-icon i{color:var(--orange);font-size:1.1rem}
+.info-text strong{display:block;font-size:0.85rem;font-weight:700;color:var(--dark)}
+.info-text span{font-size:0.82rem;color:var(--concrete)}
+.contact-form-wrap{background:#fff;padding:2rem;border:1px solid #ddd;border-top:4px solid var(--orange)}
+.contact-form-wrap .form-group label{color:var(--concrete)}
+.contact-form-wrap .form-group input,
+.contact-form-wrap .form-group select,
+.contact-form-wrap .form-group textarea{background:#f9f9f9;border-color:#ddd;color:#1a1a1a}
+.contact-form-wrap .form-group input:focus,
+.contact-form-wrap .form-group textarea:focus{border-color:var(--orange)}
+.contact-form-wrap .submit-btn{background:var(--dark)}
+.contact-form-wrap .submit-btn:hover{background:var(--steel)}
+
+.section-divider{height:1px;background:#e0dbd2;margin:0}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:4px solid var(--orange);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:2px;margin-bottom:0.4rem}
+.footer-logo span{color:var(--orange)}
+.footer-tagline{color:#666;font-size:0.82rem;margin-top:0.3rem}
+.footer-copy{color:#444;font-size:0.78rem;margin-top:0.75rem}
+
+.toast{position:fixed;bottom:20px;right:20px;background:var(--dark);border-left:4px solid var(--orange);color:#fff;padding:1rem 1.5rem;border-radius:4px;font-size:0.9rem;display:none;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+
+@media(max-width:768px){
+  .about-grid,.contact-grid,.quote-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:2rem}
+  nav{flex-wrap:wrap;gap:0.5rem}
+  .nav-links{gap:0.8rem}
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<nav>
+  <div class="logo">AD <span>Construction</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Get Free Quote</button>
+</nav>
+
+<!-- HERO with construction site background -->
+<div class="hero" style="padding:0;min-height:auto">
+
+<svg width="100%" viewBox="0 0 680 340" role="img" xmlns="http://www.w3.org/2000/svg" style="display:block">
+<title>AD Construction hero banner</title>
+<desc>Construction site illustrated banner with crane, buildings, and company branding</desc>
+<rect width="680" height="340" fill="#1C2028"/>
+<rect x="0" y="220" width="680" height="120" fill="#141820"/>
+<rect x="0" y="215" width="680" height="10" fill="#E07B2A" opacity="0.6"/>
+<rect x="30" y="130" width="60" height="100" fill="#23293A"/>
+<rect x="40" y="110" width="40" height="25" fill="#2A3245"/>
+<rect x="45" y="116" width="8" height="12" fill="#4A90D9" opacity="0.6"/>
+<rect x="57" y="116" width="8" height="12" fill="#4A90D9" opacity="0.6"/>
+<rect x="69" y="116" width="8" height="12" fill="#4A90D9" opacity="0.6"/>
+<rect x="45" y="135" width="8" height="10" fill="#4A90D9" opacity="0.5"/>
+<rect x="57" y="135" width="8" height="10" fill="#4A90D9" opacity="0.5"/>
+<rect x="69" y="135" width="8" height="10" fill="#4A90D9" opacity="0.5"/>
+<rect x="45" y="152" width="8" height="10" fill="#4A90D9" opacity="0.4"/>
+<rect x="57" y="152" width="8" height="10" fill="#4A90D9" opacity="0.4"/>
+<rect x="69" y="152" width="8" height="10" fill="#4A90D9" opacity="0.4"/>
+<rect x="45" y="169" width="8" height="10" fill="#4A90D9" opacity="0.3"/>
+<rect x="57" y="169" width="8" height="10" fill="#4A90D9" opacity="0.3"/>
+<rect x="69" y="169" width="8" height="10" fill="#4A90D9" opacity="0.3"/>
+<rect x="48" y="186" width="24" height="44" fill="#1C2028"/>
+<rect x="105" y="155" width="75" height="75" fill="#1E2535"/>
+<rect x="110" y="140" width="65" height="20" fill="#252D42"/>
+<rect x="115" y="145" width="10" height="11" fill="#4A90D9" opacity="0.5"/>
+<rect x="130" y="145" width="10" height="11" fill="#4A90D9" opacity="0.5"/>
+<rect x="145" y="145" width="10" height="11" fill="#4A90D9" opacity="0.5"/>
+<rect x="160" y="145" width="10" height="11" fill="#4A90D9" opacity="0.5"/>
+<rect x="115" y="162" width="10" height="11" fill="#4A90D9" opacity="0.4"/>
+<rect x="130" y="162" width="10" height="11" fill="#4A90D9" opacity="0.4"/>
+<rect x="145" y="162" width="10" height="11" fill="#4A90D9" opacity="0.4"/>
+<rect x="160" y="162" width="10" height="11" fill="#4A90D9" opacity="0.4"/>
+<rect x="115" y="179" width="10" height="11" fill="#4A90D9" opacity="0.3"/>
+<rect x="130" y="179" width="10" height="11" fill="#4A90D9" opacity="0.3"/>
+<rect x="145" y="179" width="10" height="11" fill="#E07B2A" opacity="0.7"/>
+<rect x="160" y="179" width="10" height="11" fill="#4A90D9" opacity="0.3"/>
+<rect x="128" y="196" width="24" height="34" fill="#141820"/>
+<rect x="550" y="110" width="90" height="120" fill="#222A3A"/>
+<rect x="555" y="90" width="80" height="24" fill="#2A3548"/>
+<rect x="560" y="97" width="12" height="13" fill="#4A90D9" opacity="0.6"/>
+<rect x="577" y="97" width="12" height="13" fill="#4A90D9" opacity="0.6"/>
+<rect x="594" y="97" width="12" height="13" fill="#4A90D9" opacity="0.6"/>
+<rect x="611" y="97" width="12" height="13" fill="#E07B2A" opacity="0.8"/>
+<rect x="560" y="117" width="12" height="13" fill="#4A90D9" opacity="0.5"/>
+<rect x="577" y="117" width="12" height="13" fill="#4A90D9" opacity="0.5"/>
+<rect x="594" y="117" width="12" height="13" fill="#4A90D9" opacity="0.5"/>
+<rect x="611" y="117" width="12" height="13" fill="#4A90D9" opacity="0.5"/>
+<rect x="560" y="137" width="12" height="13" fill="#4A90D9" opacity="0.4"/>
+<rect x="577" y="137" width="12" height="13" fill="#4A90D9" opacity="0.4"/>
+<rect x="594" y="137" width="12" height="13" fill="#4A90D9" opacity="0.4"/>
+<rect x="611" y="137" width="12" height="13" fill="#4A90D9" opacity="0.4"/>
+<rect x="560" y="157" width="12" height="13" fill="#4A90D9" opacity="0.3"/>
+<rect x="577" y="157" width="12" height="13" fill="#4A90D9" opacity="0.3"/>
+<rect x="594" y="157" width="12" height="13" fill="#4A90D9" opacity="0.3"/>
+<rect x="611" y="157" width="12" height="13" fill="#4A90D9" opacity="0.3"/>
+<rect x="575" y="178" width="30" height="52" fill="#141820"/>
+<rect x="595" y="175" width="55" height="55" fill="#1A2030"/>
+<rect x="598" y="168" width="49" height="10" fill="#222C40"/>
+<rect x="601" y="181" width="9" height="9" fill="#4A90D9" opacity="0.5"/>
+<rect x="614" y="181" width="9" height="9" fill="#4A90D9" opacity="0.5"/>
+<rect x="627" y="181" width="9" height="9" fill="#E07B2A" opacity="0.6"/>
+<rect x="601" y="195" width="9" height="9" fill="#4A90D9" opacity="0.4"/>
+<rect x="614" y="195" width="9" height="9" fill="#4A90D9" opacity="0.4"/>
+<rect x="627" y="195" width="9" height="9" fill="#4A90D9" opacity="0.4"/>
+<rect x="609" y="208" width="22" height="22" fill="#141820"/>
+<rect x="472" y="40" width="6" height="185" fill="#3A4A5C"/>
+<rect x="472" y="40" width="120" height="6" fill="#3A4A5C"/>
+<rect x="586" y="40" width="6" height="60" fill="#3A4A5C"/>
+<line x1="478" y1="46" x2="480" y2="95" stroke="#E07B2A" stroke-width="1.5"/>
+<line x1="478" y1="46" x2="540" y2="95" stroke="#E07B2A" stroke-width="1"/>
+<circle cx="591" cy="100" r="5" fill="#E07B2A"/>
+<line x1="591" y1="105" x2="591" y2="185" stroke="#E07B2A" stroke-width="1.5" stroke-dasharray="4,3"/>
+<rect x="583" y="183" width="16" height="12" fill="#C45F10" rx="2"/>
+<text x="340" y="68" font-family="Arial, sans-serif" font-size="13" fill="#E07B2A" text-anchor="middle" letter-spacing="5" font-weight="700">AD CONSTRUCTION</text>
+<rect x="240" y="78" width="200" height="1" fill="#E07B2A" opacity="0.3"/>
+<text x="340" y="115" font-family="Arial, sans-serif" font-size="36" fill="#FFFFFF" text-anchor="middle" font-weight="700" letter-spacing="1">Building India's</text>
+<text x="340" y="158" font-family="Arial, sans-serif" font-size="36" fill="#E07B2A" text-anchor="middle" font-weight="700" letter-spacing="1">Future</text>
+<rect x="230" y="172" width="100" height="30" fill="#E07B2A" rx="3"/>
+<text x="280" y="192" font-family="Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="700" letter-spacing="1">OUR SERVICES</text>
+<rect x="350" y="172" width="100" height="30" fill="none" stroke="#fff" stroke-width="1.5" rx="3"/>
+<text x="400" y="192" font-family="Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="700" letter-spacing="1">FREE QUOTE</text>
+<text x="200" y="296" font-family="Arial, sans-serif" font-size="11" fill="#888" letter-spacing="2">EXCELLENCE IN EVERY STRUCTURE</text>
+<rect x="0" y="336" width="227" height="4" fill="#E07B2A"/>
+<rect x="227" y="336" width="226" height="4" fill="#C45F10"/>
+<rect x="453" y="336" width="227" height="4" fill="#3A4A5C"/>
+</svg>
+
+</div>
+<div style="background:#1C2028;padding:2.5rem 2rem;text-align:center;border-bottom:3px solid #E07B2A">
+  <div class="stats" style="margin-top:0;padding-top:0;border-top:none;max-width:700px;margin:0 auto">
+    <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Projects Done</div></div>
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">80+</div><div class="stat-label">Contractors</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="sec-eyebrow"><div class="sec-tag">Who We Are</div></div>
+  <div class="sec-title">About AD Construction</div>
+  <div class="sec-line"></div>
+  <div class="about-grid">
+    <div>
+      <p style="color:#555;line-height:1.8;margin-bottom:1.2rem">AD Construction is a full-spectrum construction company committed to building structures that stand the test of time. From blueprints to handover, we manage every phase with precision and professionalism.</p>
+      <p style="color:#555;line-height:1.8;margin-bottom:1.5rem">Our team of licensed contractors, engineers, and architects bring expertise across residential, commercial, industrial, and infrastructure domains — delivering quality at every scale.</p>
+      <div class="values">
+        <div class="value-item"><i class="ti ti-shield-check"></i><p>Licensed & Insured</p></div>
+        <div class="value-item"><i class="ti ti-clock"></i><p>On-Time Delivery</p></div>
+        <div class="value-item"><i class="ti ti-award"></i><p>Quality First</p></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-icon">🏗️</div>
+      <h3>Our Mission</h3>
+      <p>To construct spaces that inspire, endure, and serve communities — delivering exceptional value through skilled craftsmanship and transparent processes at every stage of the build.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<div class="services-bg" id="services">
+  <div class="services-inner">
+    <div class="sec-eyebrow"><div class="sec-tag">What We Build</div></div>
+    <div class="sec-title">Our Services</div>
+    <div class="sec-line"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon"><i class="ti ti-home-2"></i></div>
+        <h3>Residential Construction</h3>
+        <p>Custom homes, apartments, and housing societies built to your vision and budget.</p>
+        <ul class="svc-list">
+          <li>Custom home construction</li>
+          <li>Apartment buildings</li>
+          <li>Renovation & interiors</li>
+          <li>Villas & bungalows</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="ti ti-building-skyscraper"></i></div>
+        <h3>Commercial Construction</h3>
+        <p>Office spaces, retail outlets, showrooms, and commercial complexes built for business.</p>
+        <ul class="svc-list">
+          <li>Office fit-outs & towers</li>
+          <li>Retail & showrooms</li>
+          <li>Malls & commercial plazas</li>
+          <li>Hotels & hospitality</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="ti ti-tool"></i></div>
+        <h3>Industrial Construction</h3>
+        <p>Factories, warehouses, plants, and industrial facilities built to specification.</p>
+        <ul class="svc-list">
+          <li>Manufacturing plants</li>
+          <li>Warehouses & logistics hubs</li>
+          <li>Cold storage facilities</li>
+          <li>Industrial sheds</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon"><i class="ti ti-road"></i></div>
+        <h3>Infrastructure Projects</h3>
+        <p>Roads, bridges, drainage systems, and large-scale civil infrastructure.</p>
+        <ul class="svc-list">
+          <li>Roads & highways</li>
+          <li>Bridges & flyovers</li>
+          <li>Drainage & sewage systems</li>
+          <li>Government tenders</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="projects">
+  <div class="sec-eyebrow"><div class="sec-tag">Our Work</div></div>
+  <div class="sec-title">Featured Projects</div>
+  <div class="sec-line"></div>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-img r"><span class="proj-badge">Residential</span>🏠</div>
+      <div class="proj-info">
+        <h3>Green Valley Apartments</h3>
+        <p>48-unit gated society — Delhi NCR</p>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img c"><span class="proj-badge">Commercial</span>🏢</div>
+      <div class="proj-info">
+        <h3>Skyline Office Complex</h3>
+        <p>G+8 tower, 1.2 lakh sq ft — Noida</p>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img i"><span class="proj-badge">Industrial</span>🏭</div>
+      <div class="proj-info">
+        <h3>Nexus Logistics Hub</h3>
+        <p>50,000 sq ft warehouse — Gurgaon</p>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img r"><span class="proj-badge">Infrastructure</span>🛣️</div>
+      <div class="proj-info">
+        <h3>NH-48 Road Expansion</h3>
+        <p>12 km 4-lane expansion — Haryana PWD</p>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img c"><span class="proj-badge">Commercial</span>🏨</div>
+      <div class="proj-info">
+        <h3>The Grand Hotel</h3>
+        <p>4-star, 120 rooms — Jaipur</p>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img r"><span class="proj-badge">Residential</span>🏡</div>
+      <div class="proj-info">
+        <h3>Maple Residency Villas</h3>
+        <p>24 luxury villas — Faridabad</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE SECTION -->
+<div class="quote-section" id="quote">
+  <div class="quote-inner">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div style="color:var(--orange);font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.4rem;font-weight:700">&#9658; FREE ESTIMATE</div>
+      <h2 style="font-size:2rem;font-weight:700;color:#fff">Request a Quote</h2>
+      <div style="width:48px;height:4px;background:var(--orange);margin:0.75rem auto 0;border-radius:2px"></div>
+    </div>
+    <div class="quote-grid">
+      <div class="quote-info">
+        <p>Tell us about your project and we'll send a detailed estimate within 24 hours — no obligation, completely free.</p>
+        <div class="quote-feature"><div class="qf-icon"><i class="ti ti-clock"></i></div><span>24-hour response guarantee</span></div>
+        <div class="quote-feature"><div class="qf-icon"><i class="ti ti-file-description"></i></div><span>Detailed BOQ & timeline included</span></div>
+        <div class="quote-feature"><div class="qf-icon"><i class="ti ti-currency-rupee"></i></div><span>Transparent pricing, no hidden costs</span></div>
+        <div class="quote-feature"><div class="qf-icon"><i class="ti ti-users"></i></div><span>Dedicated project manager assigned</span></div>
+      </div>
+      <div class="quote-form">
+        <div class="form-row">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Aapka naam"></div>
+          <div class="form-group"><label>Phone</label><input type="text" placeholder="+91 XXXXX XXXXX"></div>
+        </div>
+        <div class="form-group"><label>Project Type</label>
+          <select><option value="">Select project type</option><option>Residential</option><option>Commercial</option><option>Industrial</option><option>Infrastructure</option></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Area (sq ft)</label><input type="text" placeholder="e.g. 2000"></div>
+          <div class="form-group"><label>Budget Range</label>
+            <select><option value="">Select budget</option><option>Under ₹25 Lakh</option><option>₹25L – ₹1 Cr</option><option>₹1 Cr – ₹5 Cr</option><option>₹5 Cr+</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Project Details</label><textarea placeholder="Location, requirements, timeline..."></textarea></div>
+        <button class="submit-btn" onclick="showToast('Quote request bhej diya! 24 ghante mein contact karenge.')">&#9658; SEND QUOTE REQUEST</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<section id="contact" style="padding-top:3rem">
+  <div class="sec-eyebrow"><div class="sec-tag">Reach Us</div></div>
+  <div class="sec-title">Contact Us</div>
+  <div class="sec-line"></div>
+  <div class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Let's build something great together</h2>
+        <p>Have a project in mind? Our team is ready to help you from concept to completion.</p>
+        <div class="info-item">
+          <div class="info-icon"><i class="ti ti-map-pin"></i></div>
+          <div class="info-text"><strong>Office Address</strong><span>— Coming Soon —</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="ti ti-phone"></i></div>
+          <div class="info-text"><strong>Call Us</strong><span>— Coming Soon —</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="ti ti-mail"></i></div>
+          <div class="info-text"><strong>Email</strong><span>— Coming Soon —</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="ti ti-clock"></i></div>
+          <div class="info-text"><strong>Working Hours</strong><span>Mon – Sat, 9am – 7pm</span></div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+        <div class="form-group"><label>Subject</label><input type="text" placeholder="What is this about?"></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Tell us how we can help..."></textarea></div>
+        <button class="submit-btn" onclick="showToast('Message bhej diya! Hum jald sampark karenge.')">&#9658; SEND MESSAGE</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AD <span>Construction</span></div>
+  <div class="footer-tagline">Building trust, one structure at a time.</div>
+  <div class="footer-copy">© 2026 AD Construction. All rights reserved.</div>
+</footer>
+
+<script>
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',3500);
+}
+</script>
+</body>
+</html>
